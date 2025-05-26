@@ -8,9 +8,9 @@ import { TaskSchema, UpdateTaskSchema } from '../input-validations';
 const router = Router();
 
 router.post('/', authenticate, validate(TaskSchema), createTask);
+router.get('/', authenticate, getTasks);
 router.get('/time-report', authenticate, getTimeReport);
 router.get('/report', authenticate, getCompletionReport);
-router.get('/', authenticate, getTasks);
 router.get('/:taskId', authenticate, getTasks);
 router.patch('/:taskId', validate(UpdateTaskSchema), authenticate, updateTask);
 router.delete('/:taskId', authenticate, deleteTask);

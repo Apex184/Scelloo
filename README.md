@@ -4,31 +4,31 @@ A RESTful API for managing tasks, built with Node.js, Express, and PostgreSQL.
 
 ## Features
 
--   JWT-based authentication
--   CRUD operations for tasks
--   Task status tracking
--   Time tracking
--   Task reporting
--   Input validation
--   Error handling
--   Pagination and filtering
+- JWT-based authentication
+- CRUD operations for tasks
+- Task status tracking
+- Time tracking
+- Task reporting
+- Input validation
+- Error handling
+- Pagination and filtering
 
 ## Tech Stack
 
--   Node.js
--   Express.js
--   PostgreSQL
--   Sequelize ORM
--   TypeScript
--   JWT for authentication
--   Zod for validation
--   bcrypt for password hashing
+- Node.js
+- Express.js
+- PostgreSQL
+- Sequelize ORM
+- TypeScript
+- JWT for authentication
+- Zod for validation
+- bcrypt for password hashing
 
 ## Prerequisites
 
--   Node.js (v14 or higher)
--   PostgreSQL
--   npm or yarn
+- Node.js (v14 or higher)
+- PostgreSQL
+- npm or yarn
 
 ## Setup
 
@@ -52,7 +52,8 @@ NODE_ENV=development
 PORT=3001
 JWT_SECRET=your-super-secret-jwt-key-change-in-production
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/task_management
-DATABASE_URL_DEV=postgresql://postgres:postgres@localhost:5432/task_management_dev
+ADMIN_SECRET=your-desire-secret-id
+
 
 ```
 
@@ -60,7 +61,6 @@ DATABASE_URL_DEV=postgresql://postgres:postgres@localhost:5432/task_management_d
 
 ```bash
 createdb task_management
-createdb task_management_dev
 ```
 
 5. Run migrations:
@@ -79,16 +79,36 @@ npm run dev
 
 ### Authentication
 
--   POST /api/auth/register - Register a new user
--   POST /api/auth/login - Login user
+- POST /api/users/signup - Signup a new user
+
+Admin and the regular users uses one endpoint to signup
+User:
+{
+"firstName":
+"lastName":
+"email" :
+"password":
+}
+
+Admin
+{
+"firstName":
+"lastName":
+"email" :
+"password":
+"adminSecret" :your secret key inside the env
+}
+
+- POST /api/users/login - Login user
 
 ### Tasks
 
--   POST /api/tasks - Create a new task
--   GET /api/tasks - List all tasks (with pagination and filtering)
--   PUT /api/tasks/:id - Update a task
--   DELETE /api/tasks/:id - Delete a task
--   GET /api/tasks/report - Get task completion report
+- POST /api/tasks - Create a new task
+- GET /api/tasks - List all tasks (with pagination and filtering)
+- PATCH /api/tasks/:id - Update a task
+- DELETE /api/tasks/:id - Delete a task
+- GET /api/tasks/report - Get task completion report
+- GET /api/tasks/report-time - Get task completion report
 
 ## API Usage Examples
 
@@ -131,9 +151,9 @@ The API uses a centralized error handling system that returns errors in the foll
 
 ```json
 {
-    "success": false,
-    "message": "Error message",
-    "data": null
+  "success": false,
+  "message": "Error message",
+  "data": null
 }
 ```
 

@@ -63,16 +63,20 @@ ADMIN_SECRET=your-desire-secret-id
 createdb task_management
 ```
 
+5. Start the server:
+
+```bash
+npm run build
+```
+
+````bash
+npm run dev
+```
+
 5. Run migrations:
 
 ```bash
 npm run migrate
-```
-
-6. Start the server:
-
-```bash
-npm run dev
 ```
 
 ## API Endpoints
@@ -101,6 +105,11 @@ Admin
 
 - POST /api/users/login - Login user
 
+### Admin fetchall users
+
+
+- GET /api/admin/users - Admin fetch all users
+
 ### Tasks
 
 - POST /api/tasks - Create a new task
@@ -124,7 +133,7 @@ curl -X POST http://localhost:3001/api/tasks \
     "priority": "HIGH",
     "dueDate": "2024-03-20T00:00:00Z"
   }'
-```
+````
 
 ### Get Tasks with Pagination
 

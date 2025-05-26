@@ -107,7 +107,7 @@ Admin
 
 ### Admin fetchall users
 
-
+```
 - GET /api/admin/users - Admin fetch all users
 
 ### Tasks
